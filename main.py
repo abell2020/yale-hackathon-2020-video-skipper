@@ -19,9 +19,9 @@ class Window(QWidget):
         self.audio = "";
         self.sampFreq=0;
 
-        self.setWindowTitle("PyQt5 Media Player")
+        self.setWindowTitle("Video Skipper Player")
         self.setGeometry(350, 100, 700, 500)
-        self.setWindowIcon(QIcon('helicopter.jpg'))
+        self.setWindowIcon(QIcon('play.png'))
 
         p = self.palette()
         p.setColor(QPalette.Window, Qt.black)
