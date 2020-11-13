@@ -1,5 +1,5 @@
 from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QHBoxLayout, QVBoxLayout, QLabel, \
-    QSlider, QStyle, QSizePolicy, QFileDialog, QShortcut
+    QSlider, QStyle, QSizePolicy, QFileDialog, QShortcut, QInputDialog
 from PyQt5.QtMultimedia import QMediaPlayer, QMediaContent
 from PyQt5.QtMultimediaWidgets import QVideoWidget
 from PyQt5.QtGui import QIcon, QPalette, QKeySequence
@@ -19,9 +19,9 @@ class Window(QWidget):
         self.audio = "";
         self.sampFreq=0;
 
-        self.setWindowTitle("PyQt5 Media Player")
+        self.setWindowTitle("Video Skipper Player")
         self.setGeometry(350, 100, 700, 500)
-        self.setWindowIcon(QIcon('helicopter.jpg'))
+        self.setWindowIcon(QIcon('play.png'))
 
         p = self.palette()
         p.setColor(QPalette.Window, Qt.black)
@@ -72,6 +72,15 @@ class Window(QWidget):
         self.backwardsShortcutTiny = QShortcut(QKeySequence('Shift+Left'), self)
         self.backwardsShortcutTiny.activated.connect(self.skip_backwards_tiny)
 
+        # create speed setter button
+        self.speedButton = QPushButton()
+        speed = "1x"
+        self.speedButton.setText(speed)
+        self.speedButton.clicked.connect(self.speed_popup)
+
+        # create duration
+
+
         # create slider
         self.slider = QSlider(Qt.Horizontal)
         self.slider.setRange(0, 0)
@@ -91,6 +100,7 @@ class Window(QWidget):
         hboxLayout.addWidget(self.skipBackwards)
         hboxLayout.addWidget(self.skipForward)
         hboxLayout.addWidget(self.slider)
+        hboxLayout.addWidget(self.speedButton)
 
         # create vbox layout
         vboxLayout = QVBoxLayout()
@@ -169,6 +179,13 @@ class Window(QWidget):
 
             )
 
+    def speed_popup(self):
+        msg = QInputDialog()
+        msg.setInputMode(2)
+        msg.setWindowTitle("Speed Setter")
+        x = msg.exec_()
+
+
     def position_changed(self, position):
         self.slider.setValue(position)
 
@@ -203,7 +220,6 @@ def thread_function(name,window):
         if window.mediaPlayer.state() == QMediaPlayer.PlayingState:
             position = window.mediaPlayer.position()
             skip(window,position)
-
 
 
 app = QApplication(sys.argv)
