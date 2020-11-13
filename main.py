@@ -7,7 +7,7 @@ from PyQt5.QtCore import Qt, QUrl
 import subprocess
 from pylab import*
 from scipy.io import wavfile
-from PyQt5 import QtCore
+#from PyQt5 import QtCore
 import numpy as np
 import os, sys, time,  threading
 #setMuted(bool) useful method, also setPlaybackRate(float)
