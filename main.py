@@ -12,7 +12,7 @@ import numpy as np
 import os, sys, time,  threading
 #from PySide2 import QtCore, QtGui
 #setMuted(bool) useful method, also setPlaybackRate(float)
-audioThreshold=75;
+audioThreshold=300;
 jumpSize=.5;
 speed = 1.25;
 
@@ -60,9 +60,9 @@ class Window(QWidget):
         self.audio = "";
         self.sampFreq=0;
 
-        self.setWindowTitle("Silence Skipper Video Player")
+        self.setWindowTitle("SkipPlayer")
         self.setGeometry(350, 100, 700, 500)
-        self.setWindowIcon(QIcon('helicopter.jpg'))
+        self.setWindowIcon(QIcon('play.png'))
 
         p = self.palette()
         p.setColor(QPalette.Window, Qt.black)
